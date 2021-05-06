@@ -79,6 +79,26 @@ const updateWorker = async (req, res) => {
     }
 };
 
+const updatePasswordWorker = async (req, res) => {
+    try {
+        let cc=req.params.cc;
+        let worker = req.body;
+        let sql = `UPDATE public.workers SET "password"='${worker.password}' WHERE "password"='${worker.old_password}'; AND cc='${cc}'`;
+        let result = await _pg.executeSql(sql);
+        return res.send({
+            ok: result.rowCount == 1,
+            message: result.rowCount == 1 ? "Trabajador modificado" : "El trabajador no fue modificado",
+            content: worker,
+        });
+    } catch (error) {
+        return res.send({
+            ok: false,
+            message: "Ha ocurrido un error modificando el trabajador",
+            content: error.message
+        })
+    }
+};
+
 const deleteWorker = async (req, res) => {
     try {
         let cc = req.params.cc;
@@ -98,4 +118,4 @@ const deleteWorker = async (req, res) => {
     }
 };
 
-module.exports = { getWorker, getWorkers, createWorker, updateWorker, deleteWorker };
+module.exports = { getWorker, getWorkers, createWorker, updateWorker, updatePasswordWorker, deleteWorker };

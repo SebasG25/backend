@@ -12,6 +12,7 @@ router
     .get("/workers", _workerController.getWorkers)
     .post("/workers", _workerController.createWorker)
     .put("/workers/:cc", _workerController.updateWorker)
+    .put("/workers/:cc", _workerController.updatePasswordWorker)
     .delete("/workers/:cc", _workerController.deleteWorker)
 
     .get("/roles/:id", _rolesController.getRol)
