@@ -2,9 +2,9 @@
 
 
 ## Build Setup:
-
-- install dependencies:
+```bash
+# install dependencies:
 * npm install
 
-- serve with hot reload at localhost:3001:
+# serve with hot reload at localhost:3001:
 * npm run dev
